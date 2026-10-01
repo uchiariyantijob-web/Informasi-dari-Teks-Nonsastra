@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI Literasi Teks Nonsastra - Bahasa Indonesia Kelas V MI</title>
+    <style>
+        :root {
+            --sky-50: #f0f9ff;
+            --sky-100: #e0f2fe;
+            --sky-200: #bae6fd;
+            --sky-400: #38bdf8;
+            --sky-500: #0ea5e9;
+            --sky-600: #0284c7;
+            --sky-700: #0369a1;
+            --sky-900: #0c4a6e;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --amber-500: #f59e0b;
+            --rose-500: #f43f5e;
+            --rose-600: #e11d48;
+            --purple-600: #9333ea;
+            --dark-900: #0f172a;
+            --dark-800: #1e293b;
+            --dark-700: #334155;
+            --white: #ffffff;
+            --radius-lg: 1.25rem;
+            --radius-md: 0.875rem;
+            --shadow-sm: 0 4px 6px -1px rgba(2, 132, 199, 0.08);
+            --shadow-lg: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f4f9fd;
+            color: var(--dark-800);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--sky-700), var(--sky-500));
+            color: var(--white);
+            padding: 1.25rem 1.5rem;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .brand-box {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .brand-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border-radius: 1rem;
+            display: grid;
+            place-items: center;
+            font-size: 1.6rem;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .brand-title h1 {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .brand-title p {
+            font-size: 0.825rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .madrasah-badge {
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.4rem 0.85rem;
+            border-radius: 2rem;
+            font-size: 0.775rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sound-toggle {
+            background: rgba(255, 255, 255, 0.25);
+            border: none;
+            color: white;
+            padding: 0.5rem 0.9rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: var(--transition);
+        }
+
+        .sound-toggle:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: var(--white);
+            border-bottom: 2px solid var(--sky-100);
+            position: sticky;
+            top: 73px;
+            z-index: 90;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 0 0.5rem;
+        }
+
+        .nav-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .nav-btn {
+            padding: 1rem 1.25rem;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-weight: 700;
+            color: var(--dark-700);
+            font-size: 0.925rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .nav-btn:hover {
+            color: var(--sky-600);
+            background: var(--sky-50);
+        }
+
+        .nav-btn.active {
+            color: var(--sky-600);
+            border-bottom-color: var(--sky-600);
+            background: var(--sky-50);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 1.5rem auto;
+            padding: 0 1rem 3rem 1rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--sky-100);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px dashed var(--sky-100);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--sky-900);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.6rem;
+            border-radius: var(--radius-md);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.2);
+            text-decoration: none;
+            user-select: none;
+        }
+
+        .btn-lg {
+            padding: 1.1rem 2.2rem;
+            font-size: 1.1rem;
+            border-radius: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--sky-600), var(--sky-500));
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--sky-700), var(--sky-600));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #059669, var(--emerald-500));
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #047857, #059669);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: var(--white);
+            border: 2px solid var(--sky-600);
+            color: var(--sky-700);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--sky-50);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid var(--sky-100);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--sky-400);
+        }
+
+        .stat-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 1rem;
+            background: var(--sky-100);
+            color: var(--sky-700);
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .stat-info h4 {
+            font-size: 0.85rem;
+            color: var(--dark-700);
+            font-weight: 600;
+        }
+
+        .stat-info .stat-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--dark-900);
+        }
+
+        .cover-sky-hero {
+            position: relative;
+            background: linear-gradient(180deg, #0284c7 0%, #38bdf8 55%, #bae6fd 100%);
+            border-radius: 1.5rem;
+            padding: 3rem 2rem;
+            color: var(--white);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            margin-bottom: 1.5rem;
+        }
+
+        .cloud-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 50px;
+            opacity: 0.85;
+            animation: moveClouds linear infinite;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 50%;
+        }
+
+        .cloud1 { width: 140px; height: 45px; top: 12%; animation-duration: 24s; }
+        .cloud1::before { width: 60px; height: 60px; top: -25px; left: 20px; }
+        .cloud1::after { width: 45px; height: 45px; top: -18px; left: 65px; }
+
+        .cloud2 { width: 200px; height: 60px; top: 45%; animation-duration: 36s; animation-delay: -12s; }
+        .cloud2::before { width: 80px; height: 80px; top: -35px; left: 35px; }
+        .cloud2::after { width: 70px; height: 70px; top: -25px; left: 95px; }
+
+        .cloud3 { width: 110px; height: 38px; top: 72%; animation-duration: 18s; animation-delay: -6s; }
+        .cloud3::before { width: 45px; height: 45px; top: -18px; left: 15px; }
+        .cloud3::after { width: 40px; height: 40px; top: -12px; left: 50px; }
+
+        @keyframes moveClouds {
+            0% { transform: translateX(-220px); }
+            100% { transform: translateX(100vw); }
+        }
+
+        .running-text-wrap {
+            width: 100%;
+            background: var(--dark-900);
+            color: #f0f9ff;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            border: 2px solid var(--sky-500);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .running-text-title {
+            background: linear-gradient(135deg, var(--sky-700), var(--sky-500));
+            color: var(--white);
+            padding: 0.65rem 1.1rem;
+            font-size: 0.85rem;
+            font-weight: 800;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            z-index: 2;
+        }
+
+        .running-text-content {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+            padding-left: 100%;
+        }
+
+        .running-text-item {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.65rem 2rem;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* ADIKSIMBA & LAB STYLES */
+        .article-box {
+            background: #f8fafc;
+            border: 2px solid var(--sky-200);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: var(--dark-800);
+        }
+
+        .adiksimba-btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tag-btn {
+            padding: 0.6rem 1.1rem;
+            border-radius: 2rem;
+            border: 2px solid var(--sky-200);
+            background: var(--white);
+            color: var(--dark-800);
+            font-weight: 700;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tag-btn:hover, .tag-btn.active {
+            background: var(--sky-600);
+            color: var(--white);
+            border-color: var(--sky-600);
+        }
+
+        .hl-apa { background-color: #fef08a; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-dimana { background-color: #bbf7d0; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-kapan { background-color: #fed7aa; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-siapa { background-color: #cbd5e1; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-mengapa { background-color: #e9d5ff; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+        .hl-bagaimana { background-color: #bae6fd; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+
+        .explanation-box {
+            margin-top: 1.25rem;
+            padding: 1.1rem;
+            background: var(--sky-50);
+            border-left: 5px solid var(--sky-600);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            font-size: 0.95rem;
+            display: none;
+        }
+
+        .explanation-box.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .sorter-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .sorter-container { grid-template-columns: 1fr; }
+        }
+
+        .sorter-dropzone {
+            background: var(--sky-50);
+            border: 2px dashed var(--sky-400);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .statement-card {
+            background: var(--white);
+            border: 1px solid var(--sky-200);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .statement-card.correct {
+            border-color: var(--emerald-500);
+            background: #ecfdf5;
+        }
+
+        /* QUIZ STYLES */
+        .form-group {
+            margin-bottom: 1.25rem;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--dark-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            border: 2px solid var(--sky-200);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-900);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-select:focus {
+            border-color: var(--sky-600);
+            box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+        }
+
+        .quiz-badge-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--sky-100);
+            color: var(--sky-800);
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .quiz-progress {
+            height: 12px;
+            background: var(--sky-100);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--sky-500), var(--sky-700));
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .quiz-option-item {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 1rem 1.2rem;
+            background: var(--white);
+            border: 2px solid var(--sky-200);
+            border-radius: var(--radius-md);
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .quiz-option-item:hover, .quiz-option-item.selected {
+            border-color: var(--sky-600);
+            background: var(--sky-100);
+        }
+
+        .tf-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tf-btn {
+            padding: 1.5rem;
+            border-radius: var(--radius-lg);
+            border: 3px solid var(--sky-200);
+            background: var(--white);
+            font-size: 1.25rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .tf-btn.selected-true {
+            background: #d1fae5;
+            border-color: var(--emerald-500);
+            color: #065f46;
+        }
+
+        .tf-btn.selected-false {
+            background: #ffe4e6;
+            border-color: var(--rose-500);
+            color: #9f1239;
+        }
+
+        .match-row {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 0.85rem;
+            background: var(--sky-50);
+            padding: 0.85rem 1rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--sky-200);
+        }
+
+        @media (max-width: 640px) {
+            .match-row { grid-template-columns: 1fr; }
+        }
+
+        .drag-quiz-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .drag-quiz-area { grid-template-columns: 1fr; }
+        }
+
+        .drag-box-zone {
+            background: #f8fafc;
+            border: 2px dashed var(--sky-400);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .drag-item-card {
+            background: var(--white);
+            border: 2px solid var(--sky-200);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .appreciation-card {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--sky-50), #ffffff);
+            border-radius: var(--radius-lg);
+            border: 3px solid var(--sky-200);
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .emoji-big {
+            font-size: 4.5rem;
+            display: inline-block;
+            margin-bottom: 0.75rem;
+            animation: bounce 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-12px); }
+        }
+
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .badge-item {
+            background: var(--sky-50);
+            border: 2px solid var(--sky-200);
+            border-radius: 1rem;
+            padding: 1rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.4;
+            transition: var(--transition);
+        }
+
+        .badge-item.unlocked {
+            opacity: 1;
+            border-color: var(--amber-500);
+            background: #fffbe3;
+        }
+
+        .badge-icon { font-size: 2.2rem; }
+        .badge-name { font-size: 0.75rem; font-weight: 700; color: var(--dark-800); text-align: center; }
+
+        footer {
+            background: var(--dark-900);
+            color: var(--sky-200);
+            text-align: center;
+            padding: 1.5rem 1rem;
+            font-size: 0.85rem;
+            margin-top: auto;
+            border-top: 3px solid var(--sky-600);
+        }
+
+        /* MODALS */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            padding: 1rem;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            max-width: 620px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            padding: 1.75rem;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            border: 2px solid var(--sky-200);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #fee2e2;
+            color: #9f1239;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: var(--transition);
+        }
+
+        .modal-close-btn:hover {
+            background: #fca5a5;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-box">
+                <div class="brand-icon">📚</div>
+                <div class="brand-title">
+                    <h1>MPI Literasi Bahasa Indonesia</h1>
+                    <p>Menganalisis Teks Nonsastra • Fase C / Kelas V MI</p>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <div class="madrasah-badge">
+                    <span>🏔️ Kanwil Kemenag Gorontalo</span>
+                </div>
+                <button class="sound-toggle" id="soundToggleBtn" onclick="toggleAudio()">
+                    <span id="soundIcon">🔊</span> <span id="soundLabel">Suara Aktif</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" onclick="switchTab('cover')">
+                <span>🌈</span> Cover / Sampul
+            </button>
+            <button class="nav-btn" onclick="switchTab('dasbor')">
+                <span>🏠</span> Dasbor Belajar
+            </button>
+            <button class="nav-btn" onclick="switchTab('materi')">
+                <span>📖</span> Materi & ADIKSIMBA
+            </button>
+            <button class="nav-btn" onclick="switchTab('lab')">
+                <span>🧪</span> Lab Fakta & Opini
+            </button>
+            <button class="nav-btn" onclick="switchTab('kuis')">
+                <span>✍️</span> Kuis Evaluasi (10 Soal)
+            </button>
+            <button class="nav-btn" onclick="switchTab('rapor')">
+                <span>🏆</span> Rapor & Apresiasi
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- TAB 0: SPLASH SCREEN COVER -->
+        <section id="cover" class="tab-content active">
+            <div class="running-text-wrap">
+                <div class="running-text-title">📢 PENGUMUMAN</div>
+                <div class="running-text-content">
+                    <span class="running-text-item">
+                        Selamat datang di MPI Literasi Bahasa Indonesia Kelas V MI! • Awali dengan membaca Bismillah sebelum belajar • Pelajari modul ADIKSIMBA & Lab Fakta/Opini, lalu ikuti Kuis Evaluasi 10 Soal untuk membuka Rapor & Lencana Literasi! • Tetap semangat Generasi Cerdas Kemenag Kabupaten Gorontalo!
+                    </span>
+                </div>
+            </div>
+
+            <div class="cover-sky-hero">
+                <div class="cloud-container">
+                    <div class="cloud cloud1"></div>
+                    <div class="cloud cloud2"></div>
+                    <div class="cloud cloud3"></div>
+                </div>
+
+                <div style="position: relative; z-index: 2; max-width: 800px; text-align: center; margin: 0 auto;">
+                    <div style="font-size: 3.5rem; margin-bottom: 0.5rem; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));">🌽 📚 🏔️</div>
+                    <span style="display: inline-block; background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(4px); padding: 0.35rem 0.85rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.85rem;">
+                        Media Pembelajaran Interaktif (MPI) Modular
+                    </span>
+                    <h1 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 0.75rem; text-shadow: 0 2px 4px rgba(0,0,0,0.2); line-height: 1.25;">
+                        Menganalisis Informasi dari Teks Nonsastra
+                    </h1>
+                    <p style="font-size: 1.1rem; color: var(--sky-50); line-height: 1.6; margin-bottom: 2rem; font-weight: 500;">
+                        Bahasa Indonesia • Fase C / Kelas V Madrasah Ibtidaiyah<br>
+                        <span style="font-size: 0.95rem; opacity: 0.9;">Lingkungan Agropolitan & Literasi Kontekstual Gorontalo</span>
+                    </p>
+
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button class="btn btn-primary btn-lg" onclick="switchTab('dasbor')" style="box-shadow: 0 8px 20px rgba(0,0,0,0.25);">
+                            <span>🚀 Mulai Belajar</span>
+                        </button>
+                        <button class="btn btn-outline" onclick="openModal('modalTujuan')" style="background: rgba(255,255,255,0.9); border: none;">
+                            <span>🎯 Tujuan Pembelajaran</span>
+                        </button>
+                        <button class="btn btn-outline" onclick="openModal('modalPengembang')" style="background: rgba(255,255,255,0.9); border: none;">
+                            <span>👤 Informasi Pengembang</span>
+                        </button>
+                        <button class="btn btn-outline" onclick="openModal('modalReferensi')" style="background: rgba(255,255,255,0.9); border: none;">
+                            <span>📚 Referensi</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="stat-card">
+                    <div class="stat-icon">🏫</div>
+                    <div class="stat-info">
+                        <h4>Instansi Pengembang</h4>
+                        <div class="stat-value" style="font-size: 1.05rem;">MIN 1 Kabupaten Gorontalo</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👩‍🏫</div>
+                    <div class="stat-info">
+                        <h4>Penyusun / Guru</h4>
+                        <div class="stat-value" style="font-size: 1.05rem;">Suci Noor Ariyanti Utomo</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📱</div>
+                    <div class="stat-info">
+                        <h4>Moda Akses</h4>
+                        <div class="stat-value" style="font-size: 1.05rem;">100% Offline Standalone</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 1: DASBOR BERANDA -->
+        <section id="dasbor" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span>🏠</span> Dasbor Belajar Literasi
+                    </div>
+                    <span style="font-size: 0.85rem; color: var(--sky-700); font-weight: 700;">Fase C • Kelas V MI</span>
+                </div>
+                <p style="color: var(--dark-700); line-height: 1.6; margin-bottom: 1.25rem;">
+                    Selamat datang di Dasbor Pembelajaran Interaktif! Pilihlah modul belajar di bawah ini untuk memulai petualangan literasimu.
+                </p>
+                <div class="grid-2">
+                    <div class="stat-card" style="cursor: pointer;" onclick="switchTab('materi')">
+                        <div class="stat-icon">📖</div>
+                        <div class="stat-info">
+                            <h4>Modul 1: Materi & ADIKSIMBA</h4>
+                            <div class="stat-value" style="font-size: 0.95rem; color: var(--sky-700);">Detektif 5W1H Interaktif</div>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="cursor: pointer;" onclick="switchTab('lab')">
+                        <div class="stat-icon">🧪</div>
+                        <div class="stat-info">
+                            <h4>Modul 2: Lab Fakta & Opini</h4>
+                            <div class="stat-value" style="font-size: 0.95rem; color: var(--sky-700);">Uji Pemilah Kalimat</div>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="cursor: pointer;" onclick="switchTab('kuis')">
+                        <div class="stat-icon">✍️</div>
+                        <div class="stat-info">
+                            <h4>Evaluasi: Kuis 10 Soal</h4>
+                            <div class="stat-value" id="dashQuizStatus" style="font-size: 0.95rem; color: var(--amber-500);">Belum Dikumpulkan</div>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="cursor: pointer;" onclick="switchTab('rapor')">
+                        <div class="stat-icon">🏆</div>
+                        <div class="stat-info">
+                            <h4>Capaian Nilai Evaluasi</h4>
+                            <div class="stat-value" id="dashScoreValue" style="font-size: 0.95rem; color: var(--emerald-600);">- / 100</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: MATERI & ADIKSIMBA -->
+        <section id="materi" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span>📖</span> Konsep Dasar Teks Nonsastra & ADIKSIMBA
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div style="background: var(--sky-50); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--sky-200);">
+                        <h4 style="color: var(--sky-900); margin-bottom: 0.5rem;">📚 Apa itu Teks Nonsastra?</h4>
+                        <p style="font-size: 0.95rem; line-height: 1.6; color: var(--dark-800);">
+                            Teks nonsastra adalah karya tulis yang dibuat berdasarkan **fakta, kenyataan, atau data ilmiah** yang dapat dibuktikan kebenarannya. Contohnya: artikel berita, laporan observasi, teks deskripsi ilmiah, dan buku pelajaran sains/sosial.
+                        </p>
+                    </div>
+                    <div style="background: var(--sky-50); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--sky-200);">
+                        <h4 style="color: var(--sky-900); margin-bottom: 0.5rem;">💡 Rumus ADIKSIMBA (5W + 1H)</h4>
+                        <ul style="font-size: 0.9rem; line-height: 1.7; color: var(--dark-800); margin-left: 1.2rem;">
+                            <li><strong>Apa:</strong> Objek / Peristiwa utama.</li>
+                            <li><strong>Di mana:</strong> Tempat terjadinya peristiwa.</li>
+                            <li><strong>Kapan:</strong> Waktu peristiwa.</li>
+                            <li><strong>Siapa:</strong> Tokoh / Subjek yang terlibat.</li>
+                            <li><strong>Mengapa:</strong> Alasan / Sebab terjadinya peristiwa.</li>
+                            <li><strong>Bagaimana:</strong> Proses, cara, atau dampak peristiwa.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interaktif ADIKSIMBA -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span>🔍</span> Simulasi Interaktif: Detektif ADIKSIMBA
+                    </div>
+                    <span style="font-size: 0.85rem; color: var(--sky-700); font-weight: 600;">Klik tombol di bawah untuk menyorot teks!</span>
+                </div>
+
+                <div class="adiksimba-btn-group">
+                    <button class="tag-btn" onclick="highlightAdiksimba('apa', this)">🟡 Apa</button>
+                    <button class="tag-btn" onclick="highlightAdiksimba('dimana', this)">🟢 Di Mana</button>
+                    <button class="tag-btn" onclick="highlightAdiksimba('kapan', this)">🟠 Kapan</button>
+                    <button class="tag-btn" onclick="highlightAdiksimba('siapa', this)">⚪ Siapa</button>
+                    <button class="tag-btn" onclick="highlightAdiksimba('mengapa', this)">🟣 Mengapa</button>
+                    <button class="tag-btn" onclick="highlightAdiksimba('bagaimana', this)">🔵 Bagaimana</button>
+                    <button class="tag-btn" onclick="resetAdiksimba(this)" style="background: #fee2e2; border-color: #fca5a5;">❌ Bersihkan</button>
+                </div>
+
+                <div class="article-box" id="articleContent">
+                    <span id="txt-siapa1">Para petani agropolitan</span> di kawasan <span id="txt-dimana">pegunungan Suwawa, Kabupaten Bone Bolango, Gorontalo</span>, merayakan <span id="txt-apa">panen raya jagung hibrida</span> pada <span id="txt-kapan">bulan September 2026</span>. <span id="txt-siapa2">Dinas Pertanian setempat</span> mencatat hasil panen melimpah mencapai 7 ton per hektar. Peningkatan ini terjadi <span id="txt-mengapa">karena petani menerapkan sistem terasering dan pupuk organik</span>. Melalui keberhasilan ini, <span id="txt-bagaimana">petani mampu meningkatkan kesejahteraan keluarga dan mencegah bahaya erosi tanah</span>.
+                </div>
+
+                <div id="adiksimbaExp" class="explanation-box">
+                    <strong>Umpan Balik Edukatif:</strong> <span id="expText">-</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: LAB PEMILAH FAKTA VS OPINI -->
+        <section id="lab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span>🧪</span> Lab Interaktif: Pemilah Fakta & Opini
+                    </div>
+                </div>
+                <p style="margin-bottom: 1rem; color: var(--dark-700);">
+                    Uji pemahamanmu! Tentukan mana pernyataan <strong style="color: var(--sky-700);">FAKTA</strong> (nyata & terukur) 
+                    dan mana <strong style="color: var(--amber-500);">OPINI</strong> (pendapat / anggapan).
+                </p>
+
+                <div class="sorter-container">
+                    <div class="sorter-dropzone" id="factZone">
+                        <h3 style="text-align: center; color: var(--sky-900);">✅ FAKTA (Nyata & Terukur)</h3>
+                        <div id="factList" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+                    </div>
+                    <div class="sorter-dropzone" id="opinionZone">
+                        <h3 style="text-align: center; color: var(--sky-900);">💭 OPINI (Pendapat / Selera)</h3>
+                        <div id="opinionList" style="display: flex; flex-direction: column; gap: 0.5rem;"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem;" id="sorterBankArea">
+                    <h4 style="margin-bottom: 0.75rem; color: var(--dark-900);">Bank Kalimat Uji (Klik tombol tindakan di kartu):</h4>
+                    <div id="statementBank" style="display: grid; gap: 0.85rem;"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: KUIS FORMATIF 10 SOAL -->
+        <section id="kuis" class="tab-content">
+            <!-- SCREEN 1: REGISTRATION FORM -->
+            <div class="card" id="quizStartScreen" style="max-width: 600px; margin: 1rem auto; text-align: center;">
+                <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">📝</div>
+                <h2 style="color: var(--sky-900); font-size: 1.6rem; margin-bottom: 0.5rem;">Registrasi Kuis Formatif</h2>
+                <p style="color: var(--dark-700); margin-bottom: 1.5rem; font-size: 0.95rem;">
+                    Silakan masukkan identitas dirimu sebelum memulai evaluasi 10 butir soal interaktif.
+                </p>
+
+                <form onsubmit="startQuiz(event)">
+                    <div class="form-group">
+                        <label class="form-label" for="inputStudentName">Nama Lengkap Siswa:</label>
+                        <input type="text" id="inputStudentName" class="form-input" placeholder="Contoh: Ahmad Fauzi" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="selectStudentClass">Kelas / Rombel:</label>
+                        <select id="selectStudentClass" class="form-select" required>
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="Kelas V-A (MI Gorontalo)">Kelas V-A</option>
+                            <option value="Kelas V-B (MI Gorontalo)">Kelas V-B</option>
+                            <option value="Kelas V-C (MI Gorontalo)">Kelas V-C</option>
+                        </select>
+                    </div>
+
+                    <div style="background: var(--sky-50); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--sky-200); margin-bottom: 1.5rem; text-align: left; font-size: 0.875rem;">
+                        <strong>ℹ️ Ragam Bentuk Soal Kuis (10 Soal):</strong>
+                        <ul style="margin-left: 1.2rem; margin-top: 0.4rem; line-height: 1.5;">
+                            <li>Pilihan Ganda Biasa</li>
+                            <li>Pilihan Ganda Kompleks (2 Jawaban Benar)</li>
+                            <li>Pernyataan Benar / Salah</li>
+                            <li>Menjodohkan (Matching)</li>
+                            <li>Aktivitas Pengelompokan (Drag & Drop)</li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                        <span>🚀 Mulai Kerjakan Kuis</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- SCREEN 2: ACTIVE QUIZ PLAY -->
+            <div class="card" id="quizPlayScreen" style="display: none;">
+                <div class="card-header">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span class="quiz-badge-type" id="quizTypeLabel">Pilihan Ganda</span>
+                        <span id="quizCounterText" style="font-weight: 800; color: var(--sky-700);">Soal 1 dari 10</span>
+                    </div>
+                    <div style="font-size: 0.875rem; font-weight: 700; color: var(--dark-700);">
+                        👤 <span id="displayStudentTag">-</span>
+                    </div>
+                </div>
+
+                <div class="quiz-progress">
+                    <div class="quiz-progress-bar" id="quizProgressBar"></div>
+                </div>
+
+                <div id="quizQuestionBody" style="min-height: 280px;">
+                    <!-- Question dynamically rendered via JavaScript -->
+                </div>
+
+                <div style="display: flex; justify-content: space-between; margin-top: 2rem; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn btn-outline" id="prevQuestionBtn" onclick="prevQuestion()">
+                        ⬅️ Soal Sebelumnya
+                    </button>
+                    <button class="btn btn-primary" id="nextQuestionBtn" onclick="nextQuestion()">
+                        Soal Berikutnya ➡️
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: RAPOR & APRESIASI -->
+        <section id="rapor" class="tab-content">
+            <div id="raporEmptyState" class="card" style="text-align: center; padding: 3rem 1.5rem;">
+                <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">🔒</div>
+                <h3 style="color: var(--sky-900); margin-bottom: 0.5rem;">Rapor Belum Tersedia</h3>
+                <p style="color: var(--dark-700); margin-bottom: 1.5rem;">
+                    Silakan selesaikan 10 butir soal pada menu <strong>Kuis Evaluasi</strong> untuk membuka Rapor Capaian dan Lencana Apresiasi.
+                </p>
+                <button class="btn btn-primary" onclick="switchTab('kuis')">
+                    <span>✍️ Menuju Kuis Evaluasi</span>
+                </button>
+            </div>
+
+            <div id="raporResultArea" style="display: none;">
+                <div class="appreciation-card">
+                    <div class="emoji-big" id="appreciationEmoji">🏆</div>
+                    <h2 style="font-size: 1.8rem; color: var(--sky-900); margin-bottom: 0.4rem;" id="appreciationTitle">
+                        Luar Biasa, Detektif Literasi!
+                    </h2>
+                    <p style="font-size: 1.05rem; color: var(--dark-700); max-width: 650px; margin: 0 auto 1.25rem auto;" id="appreciationSubtitle">
+                        Selamat kepada <strong id="raporStudentName" style="color: var(--sky-700);">-</strong> (<span id="raporStudentClass">-</span>) atas perjuangan menyelesaikan kuis evaluasi.
+                    </p>
+
+                    <div style="background: var(--white); border: 2px solid var(--sky-200); border-radius: var(--radius-lg); max-width: 320px; margin: 0 auto 1.5rem auto; padding: 1.25rem; box-shadow: var(--shadow-sm);">
+                        <div style="font-size: 0.85rem; font-weight: 800; color: var(--dark-700); text-transform: uppercase;">SKOR AKHIR EVALUASI</div>
+                        <div style="font-size: 3.8rem; font-weight: 900; color: var(--sky-700); line-height: 1.1;" id="raporScoreNumber">0</div>
+                        <div id="raporGradeLabel" style="font-size: 1rem; font-weight: 800; color: var(--emerald-600); margin-top: 0.25rem;">
+                            Predikat: Istimewa
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success" onclick="window.print()">
+                        <span>🖨️ Cetak / Simpan Hasil Rapor</span>
+                    </button>
+                    <button class="btn btn-outline" onclick="restartQuiz()" style="margin-left: 0.5rem;">
+                        <span>🔄 Ulangi Kuis</span>
+                    </button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">🎖️ Koleksi Lencana Capaian</div>
+                    </div>
+                    <div class="badge-grid">
+                        <div class="badge-item" id="badge1">
+                            <div class="badge-icon">📖</div>
+                            <div class="badge-name">Pembaca Aktif</div>
+                        </div>
+                        <div class="badge-item" id="badge2">
+                            <div class="badge-icon">🔍</div>
+                            <div class="badge-name">Pakar ADIKSIMBA</div>
+                        </div>
+                        <div class="badge-item" id="badge3">
+                            <div class="badge-icon">🧪</div>
+                            <div class="badge-name">Pemilah Fakta</div>
+                        </div>
+                        <div class="badge-item" id="badge4">
+                            <div class="badge-icon">🌟</div>
+                            <div class="badge-name">Master Literasi</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">📋 Pembahasan Rinci 10 Butir Soal</div>
+                    </div>
+                    <div id="quizAnswersReviewList" style="display: flex; flex-direction: column; gap: 1.25rem;"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL 1: TUJUAN PEMBELAJARAN -->
+    <div class="modal-overlay" id="modalTujuan">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeModal('modalTujuan')">✕</button>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+                <span style="font-size: 2rem;">🎯</span>
+                <h3 style="color: var(--sky-900); font-size: 1.35rem;">Tujuan Pembelajaran</h3>
+            </div>
+            <div style="line-height: 1.7; font-size: 0.95rem; color: var(--dark-800);">
+                <p style="margin-bottom: 1rem;">
+                    <strong>Capaian Pembelajaran (Fase C - Bahasa Indonesia):</strong><br>
+                    Murid mampu menganalisis informasi dari teks sastra dan nonsastra untuk mengembangkan kemampuan berpikir kritis dalam literasi sebagai wujud cinta terhadap ilmu.
+                </p>
+                <strong style="color: var(--sky-900);">Indikator Ketercapaian Tujuan Pembelajaran (IKTP):</strong>
+                <ul style="margin-left: 1.25rem; margin-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <li>1. Mampu mengidentifikasi unsur **ADIKSIMBA** (Apa, Di mana, Kapan, Siapa, Mengapa, Bagaimana) dari teks nonsastra kontekstual.</li>
+                    <li>2. Mampu membedakan **Kalimat Fakta** (terukur & nyata) dan **Kalimat Opini** (pendapat / subjektif) dengan tepat.</li>
+                    <li>3. Mampu menemukan gagasan utama dan ide pokok dari paragraf nonsastra.</li>
+                    <li>4. Mampu menyelesaikan evaluasi kuis formatif interaktif secara mandiri atau berpasangan.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: INFORMASI PENGEMBANG -->
+    <div class="modal-overlay" id="modalPengembang">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeModal('modalPengembang')">✕</button>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+                <span style="font-size: 2rem;">👤</span>
+                <h3 style="color: var(--sky-900); font-size: 1.35rem;">Informasi Pengembang</h3>
+            </div>
+            <div style="background: var(--sky-50); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--sky-200); line-height: 1.8; font-size: 0.95rem; color: var(--dark-900);">
+                <p><strong>Nama Pengembang:</strong> Suci Noor Ariyanti Utomo</p>
+                <p><strong>Instansi:</strong> MIN 1 Kabupaten Gorontalo</p>
+                <p><strong>Mata Pelajaran:</strong> Bahasa Indonesia (Fase C / Kelas V)</p>
+                <p><strong>Wilayah Kerja:</strong> Kantor Wilayah Kementerian Agama Provinsi Gorontalo</p>
+                <p><strong>Peran / Jabatan:</strong> Guru Kelas & Pengembang Media Pembelajaran Interaktif (MPI)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: REFERENSI -->
+    <div class="modal-overlay" id="modalReferensi">
+        <div class="modal-card">
+            <button class="modal-close-btn" onclick="closeModal('modalReferensi')">✕</button>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+                <span style="font-size: 2rem;">📚</span>
+                <h3 style="color: var(--sky-900); font-size: 1.35rem;">Referensi & Sumber Rujukan</h3>
+            </div>
+            <div style="line-height: 1.7; font-size: 0.9rem; color: var(--dark-800);">
+                <ul style="margin-left: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <li><strong>Kemendikbudristek RI & Kemenag RI (2022):</strong> <em>Panduan Kurikulum Merdeka Fase C - Bahasa Indonesia Kelas V SD/MI</em>. Pusat Kurikulum dan Perbukuan, Jakarta.</li>
+                    <li><strong>Buku Siswa Bahasa Indonesia Kelas V (2021):</strong> <em>"Lihat Sekitar" Bahasa Indonesia Kelas V</em>. Badan Standar, Kurikulum, dan Asesmen Pendidikan.</li>
+                    <li><strong>Kanwil Kemenag Provinsi Gorontalo:</strong> Pedoman Integrasi Literasi Kontekstual Agropolitan & Lingkungan Hidup Daerah Gorontalo.</li>
+                    <li><strong>Prinsip Instructional Design MPI:</strong> Model Pengembangan Media Pembelajaran Interaktif Standalone HTML5/JS untuk Pembelajaran Offline Madrasah.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>Media Pembelajaran Interaktif (MPI) Literasi Teks Nonsastra MI Gorontalo</strong></p>
+        <p>Dirancang untuk Guru Madrasah & Murid Kelas V MI • Kanwil Kementerian Agama Provinsi Gorontalo</p>
+        <p style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.5rem;">Moda Offline 100% Single-File HTML5 Standalone</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let audioEnabled = true;
+        let audioCtx = null;
+
+        function playSound(type) {
+            if (!audioEnabled) return;
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+
+                if (type === 'click') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(600, now);
+                    osc.frequency.exponentialRampToValueAtTime(200, now + 0.08);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+                    osc.start(now);
+                    osc.stop(now + 0.08);
+                } else if (type === 'correct') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(523.25, now);
+                    osc.frequency.setValueAtTime(659.25, now + 0.1);
+                    osc.frequency.setValueAtTime(783.99, now + 0.2);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.35);
+                    osc.start(now);
+                    osc.stop(now + 0.35);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.setValueAtTime(180, now + 0.12);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                }
+            } catch (e) {
+                console.log("Audio Error:", e);
+            }
+        }
+
+        function openModal(modalId) {
+            playSound('click');
+            const target = document.getElementById(modalId);
+            if (target) target.style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            playSound('click');
+            const target = document.getElementById(modalId);
+            if (target) target.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.style.display = 'none';
+            }
+        };
+
+        function toggleAudio() {
+            audioEnabled = !audioEnabled;
+            document.getElementById('soundIcon').textContent = audioEnabled ? '🔊' : '🔇';
+            document.getElementById('soundLabel').textContent = audioEnabled ? 'Suara Aktif' : 'Suara Hening';
+            if (audioEnabled) playSound('click');
+        }
+
+        function switchTab(tabId) {
+            playSound('click');
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) targetTab.classList.add('active');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
+                    btn.classList.add('active');
+                }
+            });
+
+            unlockBadge('badge1');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function highlightAdiksimba(type, btnElement) {
+            playSound('click');
+            document.querySelectorAll('.adiksimba-btn-group .tag-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnElement) btnElement.classList.add('active');
+
+            ['txt-siapa1', 'txt-dimana', 'txt-apa', 'txt-kapan', 'txt-siapa2', 'txt-mengapa', 'txt-bagaimana'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.className = '';
+            });
+
+            const expBox = document.getElementById('adiksimbaExp');
+            const expText = document.getElementById('expText');
+            expBox.classList.add('active');
+
+            switch (type) {
+                case 'apa':
+                    document.getElementById('txt-apa').className = 'hl-apa';
+                    expText.innerHTML = '<strong>APA (Objek/Peristiwa):</strong> Panen raya jagung hibrida. Unsur ini menjelaskan inti topik yang dibahas.';
+                    break;
+                case 'dimana':
+                    document.getElementById('txt-dimana').className = 'hl-dimana';
+                    expText.innerHTML = '<strong>DI MANA (Lokasi):</strong> Pegunungan Suwawa, Bone Bolango, Gorontalo. Menjelaskan tempat terjadinya peristiwa.';
+                    break;
+                case 'kapan':
+                    document.getElementById('txt-kapan').className = 'hl-kapan';
+                    expText.innerHTML = '<strong>KAPAN (Waktu):</strong> Bulan September 2026. Menjelaskan keterangan waktu.';
+                    break;
+                case 'siapa':
+                    document.getElementById('txt-siapa1').className = 'hl-siapa';
+                    document.getElementById('txt-siapa2').className = 'hl-siapa';
+                    expText.innerHTML = '<strong>SIAPA (Subjek):</strong> Para petani agropolitan & Dinas Pertanian setempat.';
+                    break;
+                case 'mengapa':
+                    document.getElementById('txt-mengapa').className = 'hl-mengapa';
+                    expText.innerHTML = '<strong>MENGAPA (Sebab):</strong> Karena menerapkan sistem terasering dan pupuk organik.';
+                    break;
+                case 'bagaimana':
+                    document.getElementById('txt-bagaimana').className = 'hl-bagaimana';
+                    expText.innerHTML = '<strong>BAGAIMANA (Proses/Dampak):</strong> Petani meningkatkan kesejahteraan dan mencegah bahaya erosi.';
+                    break;
+            }
+            unlockBadge('badge2');
+        }
+
+        function resetAdiksimba() {
+            playSound('click');
+            document.querySelectorAll('.adiksimba-btn-group .tag-btn').forEach(btn => btn.classList.remove('active'));
+            ['txt-siapa1', 'txt-dimana', 'txt-apa', 'txt-kapan', 'txt-siapa2', 'txt-mengapa', 'txt-bagaimana'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.className = '';
+            });
+            document.getElementById('adiksimbaExp').classList.remove('active');
+        }
+
+        const sorterData = [
+            { id: 1, text: "Provinsi Gorontalo menghasilkan ratusan ribu ton jagung hibrida setiap tahunnya.", type: "fakta", exp: "Fakta! Memiliki data angka resmi dari dinas terkait." },
+            { id: 2, text: "Jagung yang ditanam di lereng Suwawa terasa jauh lebih manis daripada jagung daerah lain.", type: "opini", exp: "Opini! Kelezatan atau rasa adalah tanggapan subjektif." },
+            { id: 3, text: "Danau Limboto terletak di wilayah Kabupaten Gorontalo, Gorontalo.", type: "fakta", exp: "Fakta! Merupakan kenyataan letak geografis." },
+            { id: 4, text: "Semua murid di Gorontalo seharusnya bercita-cita menjadi petani modern.", type: "opini", exp: "Opini! Merupakan anjuran/harapan pribadi." }
+        ];
+
+        function initSorterGame() {
+            const bank = document.getElementById('statementBank');
+            const factList = document.getElementById('factList');
+            const opinionList = document.getElementById('opinionList');
+            if (!bank || !factList || !opinionList) return;
+            
+            bank.innerHTML = ''; factList.innerHTML = ''; opinionList.innerHTML = '';
+
+            sorterData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'statement-card';
+                card.id = `sorter-card-${item.id}`;
+                card.innerHTML = `
+                    <p style="margin-bottom: 0.6rem; font-weight: 600;">"${item.text}"</p>
+                    <div style="display: flex; gap: 0.5rem;" id="sorter-btns-${item.id}">
+                        <button class="btn btn-primary" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;" onclick="checkSort(${item.id}, 'fakta')">Fakta</button>
+                        <button class="btn btn-outline" style="padding: 0.35rem 0.75rem; font-size: 0.8rem;" onclick="checkSort(${item.id}, 'opini')">Opini</button>
+                    </div>
+                    <div id="sorter-exp-${item.id}" style="margin-top: 0.5rem; font-size: 0.825rem; font-weight: 500; display: none;"></div>
+                `;
+                bank.appendChild(card);
+            });
+        }
+
+        function checkSort(id, userChoice) {
+            const item = sorterData.find(d => d.id === id);
+            const card = document.getElementById(`sorter-card-${id}`);
+            const btnArea = document.getElementById(`sorter-btns-${id}`);
+            const expDiv = document.getElementById(`sorter-exp-${id}`);
+
+            if (userChoice === item.type) {
+                playSound('correct');
+                card.classList.add('correct');
+                btnArea.style.display = 'none';
+                expDiv.style.display = 'block';
+                expDiv.style.color = '#065f46';
+                expDiv.innerHTML = `<strong>Benar!</strong> ${item.exp}`;
+                setTimeout(() => {
+                    if (item.type === 'fakta') document.getElementById('factList').appendChild(card);
+                    else document.getElementById('opinionList').appendChild(card);
+                }, 300);
+                unlockBadge('badge3');
+            } else {
+                playSound('wrong');
+                expDiv.style.display = 'block';
+                expDiv.style.color = '#9f1239';
+                expDiv.innerHTML = `<strong>Kurang Tepat!</strong> ${item.exp}`;
+            }
+        }
+
+        let studentName = "";
+        let studentClass = "";
+        let currentQuizIdx = 0;
+
+        const quizQuestions = [
+            {
+                id: 1,
+                type: "pg",
+                typeName: "Pilihan Ganda",
+                question: "1. Bacalah kutipan berikut: 'Petani agropolitan di kawasan pegunungan Suwawa merayakan panen raya jagung hibrida pada bulan September 2026.' Unsur 'Apa' yang diberitakan pada kalimat di atas adalah...",
+                options: [
+                    "A. Cuaca di wilayah pegunungan Suwawa",
+                    "B. Pelaksanaan panen raya jagung hibrida",
+                    "C. Daftar harga pupuk organik di Gorontalo",
+                    "D. Luas wilayah Kabupaten Bone Bolango"
+                ],
+                correct: 1,
+                explanation: "Jawaban Tepat (B)! Unsur 'Apa' menanyakan inti peristiwa. Pada kalimat tersebut dijelaskan bahwa peristiwanya adalah panen raya jagung hibrida."
+            },
+            {
+                id: 2,
+                type: "bs",
+                typeName: "Benar / Salah",
+                question: "2. Pernyataan: 'Teks nonsastra ditulis berdasarkan khayalan imajinatif pengarang tanpa membutuhkan data fakta yang nyata.'",
+                correct: "salah",
+                explanation: "Jawaban Tepat (SALAH)! Teks nonsastra ditulis berdasarkan kenyataan, fakta ilmiah, atau data terukur (faktual), bukan hasil imajinasi/fiksi."
+            },
+            {
+                id: 3,
+                type: "pg_kompleks",
+                typeName: "Pilihan Ganda Kompleks (Pilih 2 Jawaban)",
+                question: "3. Cermati pilihan berikut! Pilih 2 opsi yang merupakan ciri khas dari KALIMAT FAKTA dalam teks nonsastra!",
+                options: [
+                    "A. Memiliki data angka/kuantitatif yang dapat dibuktikan kebenarannya.",
+                    "B. Menggunakan kata-kata seperti 'sepertinya', 'mungkin', atau 'menurut saya'.",
+                    "C. Memuat informasi waktu, tempat, atau lembaga resmi yang jelas.",
+                    "D. Berisi ungkapan perasaan atau selera pribadi penulis."
+                ],
+                correct: [0, 2],
+                explanation: "Jawaban Tepat (A dan C)! Kalimat fakta ditandai oleh adanya data terukur/angka dan keterangan lokasi/waktu/lembaga yang objektif."
+            },
+            {
+                id: 4,
+                type: "jodoh",
+                typeName: "Menjodohkan (Matching)",
+                question: "4. Jodohkanlah unsur rumus ADIKSIMBA berikut dengan fungsi pertanyaan yang sesuai!",
+                pairs: [
+                    { key: "Apa", label: "Unsur APA", correctVal: "objek", options: [ {v:"objek", t:"Menanyakan peristiwa/objek utama"}, {v:"tempat", t:"Menanyakan lokasi peristiwa"}, {v:"sebab", t:"Menanyakan alasan/sebab"}, {v:"proses", t:"Menanyakan cara/dampak"} ] },
+                    { key: "Di mana", label: "Unsur DI MANA", correctVal: "tempat", options: [ {v:"objek", t:"Menanyakan peristiwa/objek utama"}, {v:"tempat", t:"Menanyakan lokasi peristiwa"}, {v:"sebab", t:"Menanyakan alasan/sebab"}, {v:"proses", t:"Menanyakan cara/dampak"} ] },
+                    { key: "Mengapa", label: "Unsur MENGAPA", correctVal: "sebab", options: [ {v:"objek", t:"Menanyakan peristiwa/objek utama"}, {v:"tempat", t:"Menanyakan lokasi peristiwa"}, {v:"sebab", t:"Menanyakan alasan/sebab"}, {v:"proses", t:"Menanyakan cara/dampak"} ] },
+                    { key: "Bagaimana", label: "Unsur BAGAIMANA", correctVal: "proses", options: [ {v:"objek", t:"Menanyakan peristiwa/objek utama"}, {v:"tempat", t:"Menanyakan lokasi peristiwa"}, {v:"sebab", t:"Menanyakan alasan/sebab"}, {v:"proses", t:"Menanyakan cara/dampak"} ] }
+                ],
+                explanation: "Jawaban Tepat! Apa = objek/peristiwa; Di mana = lokasi; Mengapa = sebab/alasan; Bagaimana = cara/proses/dampak."
+            },
+            {
+                id: 5,
+                type: "drag_drop",
+                typeName: "Aktivitas Pengelompokan",
+                question: "5. Kelompokkan 2 kalimat berikut ke dalam wadah FAKTA atau OPINI secara tepat!",
+                items: [
+                    { id: "i1", text: "Dinas Pertanian mencatat hasil panen jagung mencapai 7 ton per hektar.", target: "fakta" },
+                    { id: "i2", text: "Kebun jagung di lereng Suwawa adalah pemandangan paling indah di Gorontalo.", target: "opini" }
+                ],
+                zones: [
+                    { id: "fakta", title: "🟢 FAKTA" },
+                    { id: "opini", title: "🟠 OPINI" }
+                ],
+                explanation: "Jawaban Tepat! Angka 7 ton/hektar dari Dinas Pertanian adalah FAKTA, sedangkan ungkapan 'paling indah' adalah OPINI."
+            },
+            {
+                id: 6,
+                type: "pg",
+                typeName: "Pilihan Ganda",
+                question: "6. Bacalah teks berikut: 'Danau Limboto di Gorontalo mengalami pendangkalan. Oleh karena itu, pemerintah bersama warga menanam ribuan bibit pohon di hulu sungai untuk mencegah erosi tanah.' Gagasan utama paragraf tersebut adalah...",
+                options: [
+                    "A. Jenis-jenis ikan air tawar di Danau Limboto",
+                    "B. Upaya mencegah pendangkalan Danau Limboto melalui penanaman pohon",
+                    "C. Cara memancing ikan yang baik di sore hari",
+                    "D. Biaya pembelian bibit pohon di Gorontalo"
+                ],
+                correct: 1,
+                explanation: "Jawaban Tepat (B)! Gagasan utama paragraf membahas masalah pendangkalan dan tindakan solusi penanaman pohon untuk menyelamatkan danau."
+            },
+            {
+                id: 7,
+                type: "pg_kompleks",
+                typeName: "Pilihan Ganda Kompleks (Pilih 2 Jawaban)",
+                question: "7. Manakah 2 teks di bawah ini yang TERMASUK ke dalam kelompok TEKS NONSASTRA?",
+                options: [
+                    "A. Laporan Hasil Observasi Lingkungan Danau Limboto",
+                    "B. Dongeng Mitos Naga Raksasa Penjaga Gunung Tilongkabila",
+                    "C. Artikel Berita Hasil Panen Agropolitan Gorontalo",
+                    "D. Puisi Keindahan Burung Maleo di Hutan"
+                ],
+                correct: [0, 2],
+                explanation: "Jawaban Tepat (A dan C)! Laporan observasi dan artikel berita ditulis berdasarkan realitas nyata (nonsastra), sedangkan dongeng dan puisi merupakan fiksi/sastra."
+            },
+            {
+                id: 8,
+                type: "bs",
+                typeName: "Benar / Salah",
+                question: "8. Pernyataan: 'Kalimat \"Menurut pendapat saya, sup jagung Gorontalo adalah makanan paling lezat di Indonesia\" merupakan kalimat FAKTA.'",
+                correct: "salah",
+                explanation: "Jawaban Tepat (SALAH)! Kalimat tersebut adalah OPINI karena memuat frasa 'Menurut pendapat saya' dan kata subjektif 'paling lezat'."
+            },
+            {
+                id: 9,
+                type: "jodoh",
+                typeName: "Menjodohkan (Matching)",
+                question: "9. Pasangkanlah bentuk informasi dengan contoh kalimat yang sesuai!",
+                pairs: [
+                    { key: "Fakta Angka", label: "Fakta Angka", correctVal: "c1", options: [ {v:"c1", t:"Suhu rata-rata Kota Gorontalo adalah 32°C"}, {v:"c2", t:"Pemandangan sawah terasa menenangkan"}, {v:"c3", t:"Petani memakai pupuk KARENA tanah tandus"} ] },
+                    { key: "Opini Subjektif", label: "Opini Subjektif", correctVal: "c2", options: [ {v:"c1", t:"Suhu rata-rata Kota Gorontalo adalah 32°C"}, {v:"c2", t:"Pemandangan sawah terasa menenangkan"}, {v:"c3", t:"Petani memakai pupuk KARENA tanah tandus"} ] },
+                    { key: "Sebab Akibat", label: "Sebab Akibat", correctVal: "c3", options: [ {v:"c1", t:"Suhu rata-rata Kota Gorontalo adalah 32°C"}, {v:"c2", t:"Pemandangan sawah terasa menenangkan"}, {v:"c3", t:"Petani memakai pupuk KARENA tanah tandus"} ] }
+                ],
+                explanation: "Jawaban Tepat! Suhu 32°C = Fakta Angka; Menenangkan = Opini Subjektif; Kata KARENA = Kausalitas (Sebab Akibat)."
+            },
+            {
+                id: 10,
+                type: "drag_drop",
+                typeName: "Aktivitas Pengelompokan",
+                question: "10. Kelompokkan 2 judul bacaan berikut ke dalam Kategori Teks Nonsastra atau Teks Sastra!",
+                items: [
+                    { id: "j1", text: "Buku Pelajaran IPAS Sains MI Gorontalo", target: "nonsastra" },
+                    { id: "j2", text: "Fabel Kancil dan Buaya di Sungai", target: "sastra" }
+                ],
+                zones: [
+                    { id: "nonsastra", title: "📗 Teks Nonsastra (Faktual)" },
+                    { id: "sastra", title: "📘 Teks Sastra (Imajinatif)" }
+                ],
+                explanation: "Jawaban Tepat! Buku pelajaran IPAS adalah Teks Nonsastra, sedangkan Fabel Kancil adalah Teks Sastra."
+            }
+        ];
+
+        let userAnswers = new Array(quizQuestions.length).fill(null);
+
+        function startQuiz(e) {
+            e.preventDefault();
+            playSound('correct');
+
+            studentName = document.getElementById('inputStudentName').value.trim();
+            studentClass = document.getElementById('selectStudentClass').value;
+
+            if (!studentName || !studentClass) return;
+
+            document.getElementById('quizStartScreen').style.display = 'none';
+            document.getElementById('quizPlayScreen').style.display = 'block';
+            document.getElementById('displayStudentTag').textContent = `${studentName} (${studentClass})`;
+
+            currentQuizIdx = 0;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const q = quizQuestions[currentQuizIdx];
+            const container = document.getElementById('quizQuestionBody');
+            
+            document.getElementById('quizTypeLabel').textContent = q.typeName;
+            document.getElementById('quizCounterText').textContent = `Soal ${currentQuizIdx + 1} dari ${quizQuestions.length}`;
+            document.getElementById('quizProgressBar').style.width = `${((currentQuizIdx + 1) / quizQuestions.length) * 100}%`;
+
+            document.getElementById('prevQuestionBtn').style.display = currentQuizIdx === 0 ? 'none' : 'inline-flex';
+            
+            const nextBtn = document.getElementById('nextQuestionBtn');
+            if (currentQuizIdx === quizQuestions.length - 1) {
+                nextBtn.textContent = '🏆 Selesaikan Kuis';
+                nextBtn.className = 'btn btn-success';
+            } else {
+                nextBtn.textContent = 'Soal Berikutnya ➡️️';
+                nextBtn.className = 'btn btn-primary';
+            }
+
+            let html = `<h3 style="font-size: 1.15rem; color: var(--dark-900); margin-bottom: 1.25rem; line-height: 1.6;">${q.question}</h3>`;
+
+            if (q.type === 'pg') {
+                const currentVal = userAnswers[currentQuizIdx];
+                html += `<div>`;
+                q.options.forEach((opt, idx) => {
+                    const isSelected = currentVal === idx;
+                    html += `
+                        <label class="quiz-option-item ${isSelected ? 'selected' : ''}" onclick="saveAnswerPG(${idx})">
+                            <input type="radio" name="q_pg" ${isSelected ? 'checked' : ''} />
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.type === 'bs') {
+                const currentVal = userAnswers[currentQuizIdx];
+                html += `
+                    <div class="tf-grid">
+                        <button class="tf-btn ${currentVal === 'benar' ? 'selected-true' : ''}" onclick="saveAnswerBS('benar')">
+                            <span>✅</span>
+                            <span>BENAR</span>
+                        </button>
+                        <button class="tf-btn ${currentVal === 'salah' ? 'selected-false' : ''}" onclick="saveAnswerBS('salah')">
+                            <span>❌</span>
+                            <span>SALAH</span>
+                        </button>
+                    </div>
+                `;
+            } else if (q.type === 'pg_kompleks') {
+                const currentArr = userAnswers[currentQuizIdx] || [];
+                html += `<div>`;
+                q.options.forEach((opt, idx) => {
+                    const isChecked = currentArr.includes(idx);
+                    html += `
+                        <label class="quiz-option-item ${isChecked ? 'selected' : ''}" onclick="toggleAnswerPGKompleks(${idx})">
+                            <input type="checkbox" ${isChecked ? 'checked' : ''} />
+                            <span>${opt}</span>
+                        </label>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.type === 'jodoh') {
+                const currentObj = userAnswers[currentQuizIdx] || {};
+                html += `<div style="display: grid; gap: 0.75rem;">`;
+                q.pairs.forEach((p) => {
+                    const selectedVal = currentObj[p.key] || "";
+                    let optsHtml = `<option value="">-- Pilih Pasangan --</option>`;
+                    p.options.forEach(o => {
+                        optsHtml += `<option value="${o.v}" ${selectedVal === o.v ? 'selected' : ''}>${o.t}</option>`;
+                    });
+
+                    html += `
+                        <div class="match-row">
+                            <strong style="color: var(--sky-900);">${p.label}</strong>
+                            <select class="form-select" onchange="saveAnswerJodoh('${p.key}', this.value)" style="padding: 0.5rem 0.8rem; font-size: 0.9rem;">
+                                ${optsHtml}
+                            </select>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            } else if (q.type === 'drag_drop') {
+                const currentMap = userAnswers[currentQuizIdx] || {};
+                html += `
+                    <div style="font-size: 0.875rem; color: var(--sky-800); margin-bottom: 0.75rem;">
+                        👉 Klik item bacaan, lalu klik zona tempat kategori yang tepat!
+                    </div>
+                    <div id="dragItemsBank" style="display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;">
+                `;
+
+                q.items.forEach(item => {
+                    const assignedZone = currentMap[item.id];
+                    if (!assignedZone) {
+                        html += `
+                            <div class="drag-item-card" id="item-${item.id}" onclick="selectDragItem('${item.id}')">
+                                📄 ${item.text}
+                            </div>
+                        `;
+                    }
+                });
+
+                html += `</div><div class="drag-quiz-area">`;
+
+                q.zones.forEach(zone => {
+                    html += `
+                        <div class="drag-box-zone" onclick="assignSelectedDragToZone('${zone.id}')">
+                            <h4 style="text-align: center; color: var(--sky-900); font-size: 0.95rem;">${zone.title}</h4>
+                            <div id="zone-content-${zone.id}" style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
+                    `;
+
+                    q.items.forEach(item => {
+                        if (currentMap[item.id] === zone.id) {
+                            html += `
+                                <div class="drag-item-card" style="border-color: var(--sky-500); background: var(--sky-50);" onclick="event.stopPropagation(); unassignDragItem('${item.id}');">
+                                    📄 ${item.text} <span style="float:right; color:red;">❌</span>
+                                </div>
+                            `;
+                        }
+                    });
+
+                    html += `</div></div>`;
+                });
+
+                html += `</div>`;
+            }
+
+            container.innerHTML = html;
+        }
+
+        let activeSelectedItemId = null;
+
+        function saveAnswerPG(idx) {
+            playSound('click');
+            userAnswers[currentQuizIdx] = idx;
+            renderQuizQuestion();
+        }
+
+        function saveAnswerBS(val) {
+            playSound('click');
+            userAnswers[currentQuizIdx] = val;
+            renderQuizQuestion();
+        }
+
+        function toggleAnswerPGKompleks(idx) {
+            playSound('click');
+            let arr = userAnswers[currentQuizIdx] || [];
+            if (arr.includes(idx)) {
+                arr = arr.filter(i => i !== idx);
+            } else {
+                if (arr.length < 2) {
+                    arr.push(idx);
+                } else {
+                    arr.shift();
+                    arr.push(idx);
+                }
+            }
+            userAnswers[currentQuizIdx] = arr;
+            renderQuizQuestion();
+        }
+
+        function saveAnswerJodoh(key, val) {
+            playSound('click');
+            let obj = userAnswers[currentQuizIdx] || {};
+            obj[key] = val;
+            userAnswers[currentQuizIdx] = obj;
+        }
+
+        function selectDragItem(itemId) {
+            playSound('click');
+            activeSelectedItemId = itemId;
+            document.querySelectorAll('.drag-item-card').forEach(el => el.style.borderColor = 'var(--sky-200)');
+            const target = document.getElementById(`item-${itemId}`);
+            if (target) target.style.borderColor = 'var(--amber-500)';
+        }
+
+        function assignSelectedDragToZone(zoneId) {
+            if (!activeSelectedItemId) return;
+            playSound('click');
+            let map = userAnswers[currentQuizIdx] || {};
+            map[activeSelectedItemId] = zoneId;
+            userAnswers[currentQuizIdx] = map;
+            activeSelectedItemId = null;
+            renderQuizQuestion();
+        }
+
+        function unassignDragItem(itemId) {
+            playSound('click');
+            let map = userAnswers[currentQuizIdx] || {};
+            delete map[itemId];
+            userAnswers[currentQuizIdx] = map;
+            renderQuizQuestion();
+        }
+
+        function prevQuestion() {
+            if (currentQuizIdx > 0) {
+                playSound('click');
+                currentQuizIdx--;
+                renderQuizQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            playSound('click');
+            if (currentQuizIdx < quizQuestions.length - 1) {
+                currentQuizIdx++;
+                renderQuizQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            playSound('correct');
+            let totalScore = 0;
+
+            quizQuestions.forEach((q, idx) => {
+                const userAns = userAnswers[idx];
+                if (q.type === 'pg') {
+                    if (userAns === q.correct) totalScore += 10;
+                } else if (q.type === 'bs') {
+                    if (userAns === q.correct) totalScore += 10;
+                } else if (q.type === 'pg_kompleks') {
+                    if (Array.isArray(userAns)) {
+                        const isMatch = q.correct.every(c => userAns.includes(c)) && userAns.length === q.correct.length;
+                        if (isMatch) totalScore += 10;
+                    }
+                } else if (q.type === 'jodoh') {
+                    if (userAns && typeof userAns === 'object') {
+                        let correctCount = 0;
+                        q.pairs.forEach(p => {
+                            if (userAns[p.key] === p.correctVal) correctCount++;
+                        });
+                        if (correctCount === q.pairs.length) totalScore += 10;
+                        else if (correctCount > 0) totalScore += Math.round((correctCount / q.pairs.length) * 10);
+                    }
+                } else if (q.type === 'drag_drop') {
+                    if (userAns && typeof userAns === 'object') {
+                        let correctCount = 0;
+                        q.items.forEach(it => {
+                            if (userAns[it.id] === it.target) correctCount++;
+                        });
+                        if (correctCount === q.items.length) totalScore += 10;
+                    }
+                }
+            });
+
+            document.getElementById('dashQuizStatus').textContent = 'Selesai ✅';
+            document.getElementById('dashScoreValue').textContent = `${totalScore} / 100`;
+
+            document.getElementById('raporEmptyState').style.display = 'none';
+            document.getElementById('raporResultArea').style.display = 'block';
+
+            document.getElementById('raporStudentName').textContent = studentName;
+            document.getElementById('raporStudentClass').textContent = studentClass;
+            document.getElementById('raporScoreNumber').textContent = totalScore;
+
+            const emojiEl = document.getElementById('appreciationEmoji');
+            const titleEl = document.getElementById('appreciationTitle');
+            const gradeEl = document.getElementById('raporGradeLabel');
+
+            if (totalScore >= 90) {
+                emojiEl.textContent = '🏆';
+                titleEl.textContent = 'MAESTRO LITERASI MASA DEPAN! 🎉✨';
+                gradeEl.textContent = 'Predikat: Sangat Istimewa (A+)';
+                gradeEl.style.color = 'var(--emerald-600)';
+                unlockBadge('badge4');
+            } else if (totalScore >= 70) {
+                emojiEl.textContent = '🌟';
+                titleEl.textContent = 'SANGAT HEBAT, DETEKTIF LITERASI! 👏';
+                gradeEl.textContent = 'Predikat: Baik Sekali (A)';
+                gradeEl.style.color = 'var(--sky-600)';
+                unlockBadge('badge4');
+            } else if (totalScore >= 50) {
+                emojiEl.textContent = '👍';
+                titleEl.textContent = 'BAGUS! TINGKATKAN KETELITIAN! 💪';
+                gradeEl.textContent = 'Predikat: Cukup Memuaskan (B)';
+                gradeEl.style.color = 'var(--amber-500)';
+            } else {
+                emojiEl.textContent = '🌱';
+                titleEl.textContent = 'SEMANGAT BELAJAR & KAJI ULANG! 📖';
+                gradeEl.textContent = 'Predikat: Perlu Latihan Kembali (C)';
+                gradeEl.style.color = 'var(--rose-600)';
+            }
+
+            const reviewContainer = document.getElementById('quizAnswersReviewList');
+            reviewContainer.innerHTML = '';
+
+            quizQuestions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.style.cssText = 'background: var(--sky-50); padding: 1rem; border-radius: var(--radius-md); border-left: 5px solid var(--sky-600);';
+                
+                card.innerHTML = `
+                    <div style="font-weight: 800; color: var(--sky-900); font-size: 0.95rem; margin-bottom: 0.35rem;">
+                        Soal ${idx + 1} (${q.typeName})
+                    </div>
+                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--dark-800);">${q.question}</p>
+                    <div style="background: var(--white); padding: 0.75rem; border-radius: 0.5rem; font-size: 0.85rem; line-height: 1.5; color: var(--dark-700);">
+                        💡 <strong>Pembahasan:</strong> ${q.explanation}
+                    </div>
+                `;
+                reviewContainer.appendChild(card);
+            });
+
+            switchTab('rapor');
+        }
+
+        function restartQuiz() {
+            playSound('click');
+            userAnswers = new Array(quizQuestions.length).fill(null);
+            document.getElementById('quizStartScreen').style.display = 'block';
+            document.getElementById('quizPlayScreen').style.display = 'none';
+            switchTab('kuis');
+        }
+
+        function unlockBadge(badgeId) {
+            const badge = document.getElementById(badgeId);
+            if (badge) badge.classList.add('unlocked');
+        }
+
+        window.onload = function() {
+            initSorterGame();
+        };
+    </script>
+</body>
+</html>
