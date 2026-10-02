@@ -251,6 +251,12 @@
             user-select: none;
         }
 
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
         .btn-lg {
             padding: 1.1rem 2.2rem;
             font-size: 1.1rem;
@@ -920,7 +926,7 @@
                     <div class="stat-icon">📱</div>
                     <div class="stat-info">
                         <h4>Moda Akses</h4>
-                        <div class="stat-value" style="font-size: 1.05rem;">100% Offline Standalone</div>
+                        <div class="stat-value" style="font-size: 1.05rem;">Web Interaktif (Cloud Hosted)</div>
                     </div>
                 </div>
             </div>
@@ -1080,9 +1086,9 @@
                         <label class="form-label" for="selectStudentClass">Kelas / Rombel:</label>
                         <select id="selectStudentClass" class="form-select" required>
                             <option value="">-- Pilih Kelas --</option>
-                            <option value="Kelas V-A (MI Gorontalo)">Kelas V-A</option>
-                            <option value="Kelas V-B (MI Gorontalo)">Kelas V-B</option>
-                            <option value="Kelas V-C (MI Gorontalo)">Kelas V-C</option>
+                            <option value="Kelas V-A">Kelas V-A</option>
+                            <option value="Kelas V-B">Kelas V-B</option>
+                            <option value="Kelas V-C">Kelas V-C</option>
                         </select>
                     </div>
 
@@ -1166,7 +1172,7 @@
                     </div>
 
                     <button class="btn btn-success" onclick="window.print()">
-                        <span>🖨️ Cetak / Simpan Hasil Rapor</span>
+                        <span>🖨️️ Cetak / Simpan Hasil Rapor</span>
                     </button>
                     <button class="btn btn-outline" onclick="restartQuiz()" style="margin-left: 0.5rem;">
                         <span>🔄 Ulangi Kuis</span>
@@ -1273,11 +1279,16 @@
     <footer>
         <p><strong>Media Pembelajaran Interaktif (MPI) Literasi Teks Nonsastra MI Gorontalo</strong></p>
         <p>Dirancang untuk Guru Madrasah & Murid Kelas V MI • Kanwil Kementerian Agama Provinsi Gorontalo</p>
-        <p style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.5rem;">Moda Offline 100% Single-File HTML5 Standalone</p>
+        <p style="font-size: 0.75rem; opacity: 0.8; margin-top: 0.5rem;">Moda Web Interaktif Database Google Sheets</p>
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+        // =========================================================================
+        // MASUKKAN URL GOOGLE APPS SCRIPT ANDA DI BAWAH INI
+        // =========================================================================
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbxqpdj2SXIbbz-bkcKcuL3NfRwHdqmmUeKu7y1_bJbeqXfpHlGJ-xAl_jrnQVShMQ8i/exec";
+
         let audioEnabled = true;
         let audioCtx = null;
 
@@ -1487,45 +1498,24 @@
 
         const quizQuestions = [
             {
-                id: 1,
-                type: "pg",
-                typeName: "Pilihan Ganda",
+                id: 1, type: "pg", typeName: "Pilihan Ganda",
                 question: "1. Bacalah kutipan berikut: 'Petani agropolitan di kawasan pegunungan Suwawa merayakan panen raya jagung hibrida pada bulan September 2026.' Unsur 'Apa' yang diberitakan pada kalimat di atas adalah...",
-                options: [
-                    "A. Cuaca di wilayah pegunungan Suwawa",
-                    "B. Pelaksanaan panen raya jagung hibrida",
-                    "C. Daftar harga pupuk organik di Gorontalo",
-                    "D. Luas wilayah Kabupaten Bone Bolango"
-                ],
-                correct: 1,
-                explanation: "Jawaban Tepat (B)! Unsur 'Apa' menanyakan inti peristiwa. Pada kalimat tersebut dijelaskan bahwa peristiwanya adalah panen raya jagung hibrida."
+                options: ["A. Cuaca di wilayah pegunungan Suwawa", "B. Pelaksanaan panen raya jagung hibrida", "C. Daftar harga pupuk organik di Gorontalo", "D. Luas wilayah Kabupaten Bone Bolango"],
+                correct: 1, explanation: "Jawaban Tepat (B)! Unsur 'Apa' menanyakan inti peristiwa. Pada kalimat tersebut dijelaskan bahwa peristiwanya adalah panen raya jagung hibrida."
             },
             {
-                id: 2,
-                type: "bs",
-                typeName: "Benar / Salah",
+                id: 2, type: "bs", typeName: "Benar / Salah",
                 question: "2. Pernyataan: 'Teks nonsastra ditulis berdasarkan khayalan imajinatif pengarang tanpa membutuhkan data fakta yang nyata.'",
-                correct: "salah",
-                explanation: "Jawaban Tepat (SALAH)! Teks nonsastra ditulis berdasarkan kenyataan, fakta ilmiah, atau data terukur (faktual), bukan hasil imajinasi/fiksi."
+                correct: "salah", explanation: "Jawaban Tepat (SALAH)! Teks nonsastra ditulis berdasarkan kenyataan, fakta ilmiah, atau data terukur (faktual), bukan hasil imajinasi/fiksi."
             },
             {
-                id: 3,
-                type: "pg_kompleks",
-                typeName: "Pilihan Ganda Kompleks (Pilih 2 Jawaban)",
+                id: 3, type: "pg_kompleks", typeName: "Pilihan Ganda Kompleks (Pilih 2 Jawaban)",
                 question: "3. Cermati pilihan berikut! Pilih 2 opsi yang merupakan ciri khas dari KALIMAT FAKTA dalam teks nonsastra!",
-                options: [
-                    "A. Memiliki data angka/kuantitatif yang dapat dibuktikan kebenarannya.",
-                    "B. Menggunakan kata-kata seperti 'sepertinya', 'mungkin', atau 'menurut saya'.",
-                    "C. Memuat informasi waktu, tempat, atau lembaga resmi yang jelas.",
-                    "D. Berisi ungkapan perasaan atau selera pribadi penulis."
-                ],
-                correct: [0, 2],
-                explanation: "Jawaban Tepat (A dan C)! Kalimat fakta ditandai oleh adanya data terukur/angka dan keterangan lokasi/waktu/lembaga yang objektif."
+                options: ["A. Memiliki data angka/kuantitatif yang dapat dibuktikan kebenarannya.", "B. Menggunakan kata-kata seperti 'sepertinya', 'mungkin', atau 'menurut saya'.", "C. Memuat informasi waktu, tempat, atau lembaga resmi yang jelas.", "D. Berisi ungkapan perasaan atau selera pribadi penulis."],
+                correct: [0, 2], explanation: "Jawaban Tepat (A dan C)! Kalimat fakta ditandai oleh adanya data terukur/angka dan keterangan lokasi/waktu/lembaga yang objektif."
             },
             {
-                id: 4,
-                type: "jodoh",
-                typeName: "Menjodohkan (Matching)",
+                id: 4, type: "jodoh", typeName: "Menjodohkan (Matching)",
                 question: "4. Jodohkanlah unsur rumus ADIKSIMBA berikut dengan fungsi pertanyaan yang sesuai!",
                 pairs: [
                     { key: "Apa", label: "Unsur APA", correctVal: "objek", options: [ {v:"objek", t:"Menanyakan peristiwa/objek utama"}, {v:"tempat", t:"Menanyakan lokasi peristiwa"}, {v:"sebab", t:"Menanyakan alasan/sebab"}, {v:"proses", t:"Menanyakan cara/dampak"} ] },
@@ -1536,9 +1526,7 @@
                 explanation: "Jawaban Tepat! Apa = objek/peristiwa; Di mana = lokasi; Mengapa = sebab/alasan; Bagaimana = cara/proses/dampak."
             },
             {
-                id: 5,
-                type: "drag_drop",
-                typeName: "Aktivitas Pengelompokan",
+                id: 5, type: "drag_drop", typeName: "Aktivitas Pengelompokan",
                 question: "5. Kelompokkan 2 kalimat berikut ke dalam wadah FAKTA atau OPINI secara tepat!",
                 items: [
                     { id: "i1", text: "Dinas Pertanian mencatat hasil panen jagung mencapai 7 ton per hektar.", target: "fakta" },
@@ -1551,45 +1539,24 @@
                 explanation: "Jawaban Tepat! Angka 7 ton/hektar dari Dinas Pertanian adalah FAKTA, sedangkan ungkapan 'paling indah' adalah OPINI."
             },
             {
-                id: 6,
-                type: "pg",
-                typeName: "Pilihan Ganda",
+                id: 6, type: "pg", typeName: "Pilihan Ganda",
                 question: "6. Bacalah teks berikut: 'Danau Limboto di Gorontalo mengalami pendangkalan. Oleh karena itu, pemerintah bersama warga menanam ribuan bibit pohon di hulu sungai untuk mencegah erosi tanah.' Gagasan utama paragraf tersebut adalah...",
-                options: [
-                    "A. Jenis-jenis ikan air tawar di Danau Limboto",
-                    "B. Upaya mencegah pendangkalan Danau Limboto melalui penanaman pohon",
-                    "C. Cara memancing ikan yang baik di sore hari",
-                    "D. Biaya pembelian bibit pohon di Gorontalo"
-                ],
-                correct: 1,
-                explanation: "Jawaban Tepat (B)! Gagasan utama paragraf membahas masalah pendangkalan dan tindakan solusi penanaman pohon untuk menyelamatkan danau."
+                options: ["A. Jenis-jenis ikan air tawar di Danau Limboto", "B. Upaya mencegah pendangkalan Danau Limboto melalui penanaman pohon", "C. Cara memancing ikan yang baik di sore hari", "D. Biaya pembelian bibit pohon di Gorontalo"],
+                correct: 1, explanation: "Jawaban Tepat (B)! Gagasan utama paragraf membahas masalah pendangkalan dan tindakan solusi penanaman pohon untuk menyelamatkan danau."
             },
             {
-                id: 7,
-                type: "pg_kompleks",
-                typeName: "Pilihan Ganda Kompleks (Pilih 2 Jawaban)",
+                id: 7, type: "pg_kompleks", typeName: "Pilihan Ganda Kompleks (Pilih 2 Jawaban)",
                 question: "7. Manakah 2 teks di bawah ini yang TERMASUK ke dalam kelompok TEKS NONSASTRA?",
-                options: [
-                    "A. Laporan Hasil Observasi Lingkungan Danau Limboto",
-                    "B. Dongeng Mitos Naga Raksasa Penjaga Gunung Tilongkabila",
-                    "C. Artikel Berita Hasil Panen Agropolitan Gorontalo",
-                    "D. Puisi Keindahan Burung Maleo di Hutan"
-                ],
-                correct: [0, 2],
-                explanation: "Jawaban Tepat (A dan C)! Laporan observasi dan artikel berita ditulis berdasarkan realitas nyata (nonsastra), sedangkan dongeng dan puisi merupakan fiksi/sastra."
+                options: ["A. Laporan Hasil Observasi Lingkungan Danau Limboto", "B. Dongeng Mitos Naga Raksasa Penjaga Gunung Tilongkabila", "C. Artikel Berita Hasil Panen Agropolitan Gorontalo", "D. Puisi Keindahan Burung Maleo di Hutan"],
+                correct: [0, 2], explanation: "Jawaban Tepat (A dan C)! Laporan observasi dan artikel berita ditulis berdasarkan realitas nyata (nonsastra), sedangkan dongeng dan puisi merupakan fiksi/sastra."
             },
             {
-                id: 8,
-                type: "bs",
-                typeName: "Benar / Salah",
+                id: 8, type: "bs", typeName: "Benar / Salah",
                 question: "8. Pernyataan: 'Kalimat \"Menurut pendapat saya, sup jagung Gorontalo adalah makanan paling lezat di Indonesia\" merupakan kalimat FAKTA.'",
-                correct: "salah",
-                explanation: "Jawaban Tepat (SALAH)! Kalimat tersebut adalah OPINI karena memuat frasa 'Menurut pendapat saya' dan kata subjektif 'paling lezat'."
+                correct: "salah", explanation: "Jawaban Tepat (SALAH)! Kalimat tersebut adalah OPINI karena memuat frasa 'Menurut pendapat saya' dan kata subjektif 'paling lezat'."
             },
             {
-                id: 9,
-                type: "jodoh",
-                typeName: "Menjodohkan (Matching)",
+                id: 9, type: "jodoh", typeName: "Menjodohkan (Matching)",
                 question: "9. Pasangkanlah bentuk informasi dengan contoh kalimat yang sesuai!",
                 pairs: [
                     { key: "Fakta Angka", label: "Fakta Angka", correctVal: "c1", options: [ {v:"c1", t:"Suhu rata-rata Kota Gorontalo adalah 32°C"}, {v:"c2", t:"Pemandangan sawah terasa menenangkan"}, {v:"c3", t:"Petani memakai pupuk KARENA tanah tandus"} ] },
@@ -1599,9 +1566,7 @@
                 explanation: "Jawaban Tepat! Suhu 32°C = Fakta Angka; Menenangkan = Opini Subjektif; Kata KARENA = Kausalitas (Sebab Akibat)."
             },
             {
-                id: 10,
-                type: "drag_drop",
-                typeName: "Aktivitas Pengelompokan",
+                id: 10, type: "drag_drop", typeName: "Aktivitas Pengelompokan",
                 question: "10. Kelompokkan 2 judul bacaan berikut ke dalam Kategori Teks Nonsastra atau Teks Sastra!",
                 items: [
                     { id: "j1", text: "Buku Pelajaran IPAS Sains MI Gorontalo", target: "nonsastra" },
@@ -1649,7 +1614,7 @@
                 nextBtn.textContent = '🏆 Selesaikan Kuis';
                 nextBtn.className = 'btn btn-success';
             } else {
-                nextBtn.textContent = 'Soal Berikutnya ➡️️';
+                nextBtn.textContent = 'Soal Berikutnya ➡';
                 nextBtn.className = 'btn btn-primary';
             }
 
@@ -1847,97 +1812,157 @@
 
         function finishQuiz() {
             playSound('correct');
-            let totalScore = 0;
+            const nextBtn = document.getElementById('nextQuestionBtn');
+            nextBtn.disabled = true;
+            nextBtn.innerHTML = '⏳ Menyimpan ke Database...';
 
+            let totalScore = 0;
+            let correctCount = 0;
+            let wrongCount = 0;
+            let rincianJawabanArr = [];
+
+            // Evaluasi jawaban
             quizQuestions.forEach((q, idx) => {
                 const userAns = userAnswers[idx];
+                let isCorrect = false;
+                let ansString = "";
+
                 if (q.type === 'pg') {
-                    if (userAns === q.correct) totalScore += 10;
+                    if (userAns === q.correct) { totalScore += 10; isCorrect = true; }
+                    ansString = (userAns !== null && userAns !== undefined) ? q.options[userAns] : "Tidak dijawab";
                 } else if (q.type === 'bs') {
-                    if (userAns === q.correct) totalScore += 10;
+                    if (userAns === q.correct) { totalScore += 10; isCorrect = true; }
+                    ansString = userAns ? userAns.toUpperCase() : "Tidak dijawab";
                 } else if (q.type === 'pg_kompleks') {
                     if (Array.isArray(userAns)) {
                         const isMatch = q.correct.every(c => userAns.includes(c)) && userAns.length === q.correct.length;
-                        if (isMatch) totalScore += 10;
+                        if (isMatch) { totalScore += 10; isCorrect = true; }
+                        ansString = userAns.map(i => q.options[i]).join(" | ");
+                    } else {
+                        ansString = "Tidak dijawab";
                     }
                 } else if (q.type === 'jodoh') {
                     if (userAns && typeof userAns === 'object') {
-                        let correctCount = 0;
+                        let cCount = 0;
+                        let ansParts = [];
                         q.pairs.forEach(p => {
-                            if (userAns[p.key] === p.correctVal) correctCount++;
+                            if (userAns[p.key] === p.correctVal) cCount++;
+                            ansParts.push(`[${p.key} = ${userAns[p.key]||"Kosong"}]`);
                         });
-                        if (correctCount === q.pairs.length) totalScore += 10;
-                        else if (correctCount > 0) totalScore += Math.round((correctCount / q.pairs.length) * 10);
+                        if (cCount === q.pairs.length) { totalScore += 10; isCorrect = true; }
+                        else if (cCount > 0) totalScore += Math.round((cCount / q.pairs.length) * 10);
+                        ansString = ansParts.join(", ");
+                    } else {
+                        ansString = "Tidak dijawab";
                     }
                 } else if (q.type === 'drag_drop') {
                     if (userAns && typeof userAns === 'object') {
-                        let correctCount = 0;
+                        let cCount = 0;
+                        let ansParts = [];
                         q.items.forEach(it => {
-                            if (userAns[it.id] === it.target) correctCount++;
+                            if (userAns[it.id] === it.target) cCount++;
+                            ansParts.push(`[${it.text.substring(0, 15)}... = ${userAns[it.id]||"Kosong"}]`);
                         });
-                        if (correctCount === q.items.length) totalScore += 10;
+                        if (cCount === q.items.length) { totalScore += 10; isCorrect = true; }
+                        ansString = ansParts.join(", ");
+                    } else {
+                        ansString = "Tidak dijawab";
                     }
                 }
+
+                if (isCorrect) correctCount++;
+                else wrongCount++;
+
+                rincianJawabanArr.push(`Soal ${idx + 1} [${isCorrect ? "BENAR" : "SALAH"}]: ${ansString}`);
             });
 
-            document.getElementById('dashQuizStatus').textContent = 'Selesai ✅';
-            document.getElementById('dashScoreValue').textContent = `${totalScore} / 100`;
+            // Siapkan Data untuk dikirim ke Backend Google Apps Script
+            const payload = {
+                tipe: "SUBMIT_KUIS",
+                nama: studentName,
+                kelas: studentClass,
+                skor: totalScore,
+                jumlahBenar: correctCount,
+                jumlahSalah: wrongCount,
+                rincian: rincianJawabanArr.join('\n'),
+                soal: quizQuestions.map(q => ({id: q.id, typeName: q.typeName, question: q.question}))
+            };
 
-            document.getElementById('raporEmptyState').style.display = 'none';
-            document.getElementById('raporResultArea').style.display = 'block';
-
-            document.getElementById('raporStudentName').textContent = studentName;
-            document.getElementById('raporStudentClass').textContent = studentClass;
-            document.getElementById('raporScoreNumber').textContent = totalScore;
-
-            const emojiEl = document.getElementById('appreciationEmoji');
-            const titleEl = document.getElementById('appreciationTitle');
-            const gradeEl = document.getElementById('raporGradeLabel');
-
-            if (totalScore >= 90) {
-                emojiEl.textContent = '🏆';
-                titleEl.textContent = 'MAESTRO LITERASI MASA DEPAN! 🎉✨';
-                gradeEl.textContent = 'Predikat: Sangat Istimewa (A+)';
-                gradeEl.style.color = 'var(--emerald-600)';
-                unlockBadge('badge4');
-            } else if (totalScore >= 70) {
-                emojiEl.textContent = '🌟';
-                titleEl.textContent = 'SANGAT HEBAT, DETEKTIF LITERASI! 👏';
-                gradeEl.textContent = 'Predikat: Baik Sekali (A)';
-                gradeEl.style.color = 'var(--sky-600)';
-                unlockBadge('badge4');
-            } else if (totalScore >= 50) {
-                emojiEl.textContent = '👍';
-                titleEl.textContent = 'BAGUS! TINGKATKAN KETELITIAN! 💪';
-                gradeEl.textContent = 'Predikat: Cukup Memuaskan (B)';
-                gradeEl.style.color = 'var(--amber-500)';
-            } else {
-                emojiEl.textContent = '🌱';
-                titleEl.textContent = 'SEMANGAT BELAJAR & KAJI ULANG! 📖';
-                gradeEl.textContent = 'Predikat: Perlu Latihan Kembali (C)';
-                gradeEl.style.color = 'var(--rose-600)';
-            }
-
-            const reviewContainer = document.getElementById('quizAnswersReviewList');
-            reviewContainer.innerHTML = '';
-
-            quizQuestions.forEach((q, idx) => {
-                const card = document.createElement('div');
-                card.style.cssText = 'background: var(--sky-50); padding: 1rem; border-radius: var(--radius-md); border-left: 5px solid var(--sky-600);';
+            // Mengirim data ke Database
+            fetch(GAS_URL, {
+                method: "POST",
+                headers: {
+                    // text/plain digunakan untuk menghindari issue preflight CORS pada Google Apps Script
+                    "Content-Type": "text/plain;charset=utf-8", 
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(data => console.log("Database response:", data))
+            .catch(error => console.error("Error saving to database:", error))
+            .finally(() => {
+                nextBtn.disabled = false;
                 
-                card.innerHTML = `
-                    <div style="font-weight: 800; color: var(--sky-900); font-size: 0.95rem; margin-bottom: 0.35rem;">
-                        Soal ${idx + 1} (${q.typeName})
-                    </div>
-                    <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--dark-800);">${q.question}</p>
-                    <div style="background: var(--white); padding: 0.75rem; border-radius: 0.5rem; font-size: 0.85rem; line-height: 1.5; color: var(--dark-700);">
-                        💡 <strong>Pembahasan:</strong> ${q.explanation}
-                    </div>
-                `;
-                reviewContainer.appendChild(card);
-            });
+                // Tampilkan Rapor Capaian Setelah Dikirim
+                document.getElementById('dashQuizStatus').textContent = 'Selesai ✅';
+                document.getElementById('dashScoreValue').textContent = `${totalScore} / 100`;
 
-            switchTab('rapor');
+                document.getElementById('raporEmptyState').style.display = 'none';
+                document.getElementById('raporResultArea').style.display = 'block';
+
+                document.getElementById('raporStudentName').textContent = studentName;
+                document.getElementById('raporStudentClass').textContent = studentClass;
+                document.getElementById('raporScoreNumber').textContent = totalScore;
+
+                const emojiEl = document.getElementById('appreciationEmoji');
+                const titleEl = document.getElementById('appreciationTitle');
+                const gradeEl = document.getElementById('raporGradeLabel');
+
+                if (totalScore >= 90) {
+                    emojiEl.textContent = '🏆';
+                    titleEl.textContent = 'MAESTRO LITERASI MASA DEPAN! 🎉✨';
+                    gradeEl.textContent = 'Predikat: Sangat Istimewa (A+)';
+                    gradeEl.style.color = 'var(--emerald-600)';
+                    unlockBadge('badge4');
+                } else if (totalScore >= 70) {
+                    emojiEl.textContent = '🌟';
+                    titleEl.textContent = 'SANGAT HEBAT, DETEKTIF LITERASI! 👏';
+                    gradeEl.textContent = 'Predikat: Baik Sekali (A)';
+                    gradeEl.style.color = 'var(--sky-600)';
+                    unlockBadge('badge4');
+                } else if (totalScore >= 50) {
+                    emojiEl.textContent = '👍';
+                    titleEl.textContent = 'BAGUS! TINGKATKAN KETELITIAN! 💪';
+                    gradeEl.textContent = 'Predikat: Cukup Memuaskan (B)';
+                    gradeEl.style.color = 'var(--amber-500)';
+                } else {
+                    emojiEl.textContent = '🌱';
+                    titleEl.textContent = 'SEMANGAT BELAJAR & KAJI ULANG! 📖';
+                    gradeEl.textContent = 'Predikat: Perlu Latihan Kembali (C)';
+                    gradeEl.style.color = 'var(--rose-600)';
+                }
+
+                const reviewContainer = document.getElementById('quizAnswersReviewList');
+                reviewContainer.innerHTML = '';
+
+                quizQuestions.forEach((q, idx) => {
+                    const card = document.createElement('div');
+                    card.style.cssText = 'background: var(--sky-50); padding: 1rem; border-radius: var(--radius-md); border-left: 5px solid var(--sky-600);';
+                    
+                    card.innerHTML = `
+                        <div style="font-weight: 800; color: var(--sky-900); font-size: 0.95rem; margin-bottom: 0.35rem;">
+                            Soal ${idx + 1} (${q.typeName})
+                        </div>
+                        <p style="font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--dark-800);">${q.question}</p>
+                        <div style="background: var(--white); padding: 0.75rem; border-radius: 0.5rem; font-size: 0.85rem; line-height: 1.5; color: var(--dark-700);">
+                            💡 <strong>Pembahasan:</strong> ${q.explanation}
+                        </div>
+                    `;
+                    reviewContainer.appendChild(card);
+                });
+
+                switchTab('rapor');
+            });
         }
 
         function restartQuiz() {
